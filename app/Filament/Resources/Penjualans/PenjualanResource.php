@@ -24,6 +24,10 @@ class PenjualanResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Penjualan Management';
 
+    protected static ?string $modelLabel = "Penjualan";
+
+    protected static ?string $pluralModelLabel = "Manage Penjualan";
+
     public static function form(Schema $schema): Schema
     {
         return PenjualanForm::configure($schema);

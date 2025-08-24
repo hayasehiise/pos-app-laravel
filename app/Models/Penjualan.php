@@ -27,7 +27,7 @@ class Penjualan extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope('user_toko', function ($query) {
+        static::addGlobalScope('penjualan_by_toko', function ($query) {
             $user = auth()->user();
 
             if ($user && ($user->hasRole('owner') || $user->hasRole('kasir'))) {

@@ -17,7 +17,7 @@ class ListProduks extends ListRecords
         $user = auth()->user();
         return [
             CreateAction::make()
-                ->visible(fn() => !$user->hasRole('admin')),
+                ->label("Tambah Produk")
         ];
     }
 }
