@@ -9,6 +9,8 @@ use App\Policies\UserPolicy;
 use App\Policies\ProdukPolicy;
 // use Illuminate\Support\ServiceProvider;
 use App\Models\User as UserModel;
+use App\Policies\PengeluaranPolicy;
+use App\Policies\PenjualanPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -17,6 +19,8 @@ class AuthServiceProvider extends ServiceProvider
         UserModel::class => UserPolicy::class,
         Toko::class => TokoPolicy::class,
         Produk::class => ProdukPolicy::class,
+        Penjualan::class => PenjualanPolicy::class,
+        Pengeluaran::class => PengeluaranPolicy::class,
     ];
 
     /**

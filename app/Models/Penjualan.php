@@ -24,6 +24,9 @@ class Penjualan extends Model
     {
         return $this->belongsTo(Produk::class);
     }
+    public function toko(): BelongsTo {
+        return $this->belongsTo(Toko::class);
+    }
 
     protected static function booted()
     {
