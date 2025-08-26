@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use SensitiveParameter;
 use Filament\Pages\Page;
 use Filament\Schemas\Schema;
 use Illuminate\Support\HtmlString;
@@ -10,7 +11,7 @@ use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Component;
 use Filament\Auth\Pages\Login as BaseLogin;
-use SensitiveParameter;
+use Illuminate\Validation\ValidationException;
 
 class CustomLogin extends BaseLogin
 {
@@ -19,16 +20,16 @@ class CustomLogin extends BaseLogin
     {
         return $schema
             ->components([
-                $this->getUsernameFormComponent(),
+                $this->getLoginFormComponent(),
                 $this->getPasswordFormComponent(),
                 $this->getRememberFormComponent(),
             ]);
     }
 
-    protected function getUsernameFormComponent(): Component
+    protected function getLoginFormComponent(): Component
     {
-        return TextInput::make('username')
-            ->label('Username')
+        return TextInput::make('login')
+            ->label('Email/Username')
             ->required()
             ->autocomplete()
             ->autofocus()
@@ -59,9 +60,17 @@ class CustomLogin extends BaseLogin
      */
     protected function getCredentialsFromFormData(#[SensitiveParameter] array $data): array
     {
+        $loginType = filter_var($data['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         return [
-            'username' => $data['username'],
+            $loginType => $data['login'],
             'password' => $data['password'],
         ];
+    }
+
+    protected function throwFailureValidationException(): never
+    {
+        throw ValidationException::withMessages([
+            'data.login' => __('filament-panels::auth/pages/login.messages.failed'),
+        ]);
     }
 }
