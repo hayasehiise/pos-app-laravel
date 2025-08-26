@@ -14,6 +14,7 @@ use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\DatePicker;
+use Filament\Widgets\AccountWidget;
 
 class Dashboard extends BaseDashboard
 {
@@ -43,6 +44,13 @@ class Dashboard extends BaseDashboard
                     ])
                     ->columns(2),
             ])->columns(1);
+    }
+
+    public function getHeaderWidgets(): array
+    {
+        return [
+            AccountWidget::class,
+        ];
     }
 
     public function getWidgets(): array
