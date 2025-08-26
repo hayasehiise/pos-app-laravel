@@ -42,7 +42,8 @@ class ProduksTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->color('warning'),
                 DeleteAction::make(),
             ])
             ->toolbarActions([

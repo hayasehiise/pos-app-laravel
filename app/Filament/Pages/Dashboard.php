@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 // use Filament\Pages\Page;
 
+use App\Filament\Widgets\AdminStats;
 use App\Filament\Widgets\CashFlowChart;
 use Filament\Pages\Dashboard as BaseDashboard;
 
@@ -19,22 +20,26 @@ class Dashboard extends BaseDashboard
     // protected string $view = 'filament.pages.dashboard';
 
     protected static ?string $navigationLabel = "Dashboard";
-    protected static ?string $title = "Dashboard Utama";
+    protected static ?string $title = "Dashboard";
 
     use HasFiltersForm;
 
     public function filtersForm(Schema $schema): Schema
     {
+        $user = auth()->user();
+        if ($user->hasRole('admin')) {
+            return $schema->components([]);
+        }
         return $schema
             ->components([
                 Section::make()
                     ->schema([
                         DatePicker::make('startDate')
                             ->default(now()->startOfMonth())
-                            ->live(false),
+                            ->lazy(),
                         DatePicker::make('endDate')
                             ->default(now()->endOfMonth())
-                            ->live(false),
+                            ->lazy(),
                     ])
                     ->columns(2),
             ])->columns(1);
@@ -42,6 +47,14 @@ class Dashboard extends BaseDashboard
 
     public function getWidgets(): array
     {
+        $user = auth()->user();
+        if ($user->hasRole('admin')) {
+            return [
+                AdminStats::class,
+            ];
+        }
+
+        // ketika role selain admin
         return [
             CashFlowStats::class,
             CashFlowChart::class,

@@ -32,7 +32,8 @@ class PengeluaransTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->color('warning'),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
