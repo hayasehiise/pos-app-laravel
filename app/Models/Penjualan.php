@@ -20,11 +20,16 @@ class Penjualan extends Model
         'total_harga',
     ];
 
+    protected $casts = [
+        'tanggal_penjualan' => 'date',
+    ];
+
     public function produk(): BelongsTo
     {
         return $this->belongsTo(Produk::class);
     }
-    public function toko(): BelongsTo {
+    public function toko(): BelongsTo
+    {
         return $this->belongsTo(Toko::class);
     }
 

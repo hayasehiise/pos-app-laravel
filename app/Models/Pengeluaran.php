@@ -18,11 +18,17 @@ class Pengeluaran extends Model
         'toko_id',
     ];
 
-    public function toko(): BelongsTo {
+    protected $casts = [
+        'tanggal_pengeluaran' => 'date',
+    ];
+
+    public function toko(): BelongsTo
+    {
         return $this->belongsTo(Toko::class);
     }
 
-    protected static function booted() {
+    protected static function booted()
+    {
         static::addGlobalScope('pengeluaran_by_toko', function ($query) {
             $user = auth()->user();
 
