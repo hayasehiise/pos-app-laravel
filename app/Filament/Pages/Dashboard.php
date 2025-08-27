@@ -11,7 +11,8 @@ use App\Filament\Widgets\CashFlowChart;
 use Filament\Pages\Dashboard as BaseDashboard;
 
 use App\Filament\Widgets\CashFlowStats;
-
+use App\Filament\Widgets\LaporanPrintAll;
+use Filament\Actions\Action;
 use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -44,7 +45,17 @@ class Dashboard extends BaseDashboard
                             ->default(now()->endOfMonth())
                             ->lazy(),
                     ])
-                    ->columns(2),
+                    ->columns(2)
+                    ->columnSpan(2),
+                Section::make()
+                    ->schema([
+                        Action::make('printAll')
+                            ->label('Print All')
+                            ->button()
+                            ->url(route('laporan.print'))
+                            ->openUrlInNewTab(),
+                    ])->columnSpan(1)
+                    ->compact(),
             ])->columns(1);
     }
 
@@ -52,6 +63,7 @@ class Dashboard extends BaseDashboard
     {
         return [
             AccountWidget::class,
+            // LaporanPrintAll::class,
         ];
     }
 
