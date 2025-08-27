@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Laporan</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         @page {
             size: A4;
@@ -17,31 +18,20 @@
             margin: 0;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #444;
-            padding: 6px;
-            text-align: left;
-        }
-
-        th {
-            background: #f2f2f2;
-        }
-
-        h2 {
-            margin-top: 30px;
-            margin-bottom: 10px;
+        .page-break {
+            page-break-after: always;
         }
 
         @media print {
             body {
                 background: white;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                /* untuk kompatibilitas */
             }
         }
     </style>

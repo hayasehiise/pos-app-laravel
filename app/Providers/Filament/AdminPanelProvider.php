@@ -33,7 +33,6 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('App - POS')
             ->brandLogo(asset('brand/brandLogo.png'))
             ->brandLogoHeight('3rem')
-            ->favicon(asset('brand/brandLogo.png'))
             ->colors([
                 'primary' => Color::Violet,
             ])
@@ -41,10 +40,6 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
-            // ->widgets([
-            //     AccountWidget::class,
-            //     FilamentInfoWidget::class,
-            // ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

@@ -11,12 +11,12 @@ use App\Filament\Widgets\CashFlowChart;
 use Filament\Pages\Dashboard as BaseDashboard;
 
 use App\Filament\Widgets\CashFlowStats;
-use App\Filament\Widgets\LaporanPrintAll;
 use Filament\Actions\Action;
 use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\DatePicker;
+use Filament\Schemas\Components\Flex;
 use Filament\Widgets\AccountWidget;
 
 class Dashboard extends BaseDashboard
@@ -38,32 +38,31 @@ class Dashboard extends BaseDashboard
             ->components([
                 Section::make()
                     ->schema([
-                        DatePicker::make('startDate')
-                            ->default(now()->startOfMonth())
-                            ->lazy(),
-                        DatePicker::make('endDate')
-                            ->default(now()->endOfMonth())
-                            ->lazy(),
+                        Flex::make([
+                            DatePicker::make('startDate')
+                                ->default(now()->startOfMonth())
+                                ->lazy(),
+                            DatePicker::make('endDate')
+                                ->default(now()->endOfMonth())
+                                ->lazy(),
+                            Action::make('print')
+                                ->icon('tabler-printer')
+                                ->label('Print Laporan')
+                                ->button()
+                                ->url(route('laporan.print'))
+                                ->openUrlInNewTab(),
+                        ])
+                            ->verticallyAlignCenter()
                     ])
-                    ->columns(2)
+                    ->columns(1)
                     ->columnSpan(2),
-                Section::make()
-                    ->schema([
-                        Action::make('printAll')
-                            ->label('Print All')
-                            ->button()
-                            ->url(route('laporan.print'))
-                            ->openUrlInNewTab(),
-                    ])->columnSpan(1)
-                    ->compact(),
-            ])->columns(1);
+            ]);
     }
 
     public function getHeaderWidgets(): array
     {
         return [
             AccountWidget::class,
-            // LaporanPrintAll::class,
         ];
     }
 
