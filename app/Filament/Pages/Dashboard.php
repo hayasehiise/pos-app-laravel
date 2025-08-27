@@ -5,6 +5,8 @@ namespace App\Filament\Pages;
 // use Filament\Pages\Page;
 
 use App\Filament\Widgets\AdminStats;
+use App\Filament\Widgets\CashComparisonPengeluaranChart;
+use App\Filament\Widgets\CashComparisonPenjualanChart;
 use App\Filament\Widgets\CashFlowChart;
 use Filament\Pages\Dashboard as BaseDashboard;
 
@@ -66,6 +68,8 @@ class Dashboard extends BaseDashboard
         return [
             CashFlowStats::class,
             CashFlowChart::class,
+            CashComparisonPenjualanChart::class,
+            CashComparisonPengeluaranChart::class,
         ];
     }
 

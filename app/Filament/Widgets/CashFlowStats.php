@@ -15,6 +15,8 @@ class CashFlowStats extends StatsOverviewWidget
 
     protected static ?int $sort = 2;
 
+    protected ?string $pollingInterval = null;
+
     public Carbon $from;
     public Carbon $to;
 

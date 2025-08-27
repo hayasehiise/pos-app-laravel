@@ -19,6 +19,8 @@ class CashFlowChart extends ChartWidget
 
     protected int | string | array $columnSpan = 'full';
 
+    protected ?string $pollingInterval = null;
+
     protected function getData(): array
     {
         $filterDateFrom = Carbon::parse($this->pageFilters['startDate'] ?? now()->startOfMonth());

@@ -38,6 +38,7 @@ class PengeluaranPolicy
     }
     public function update(User $user, Pengeluaran $model): bool
     {
+        if ($user->hasRole('admin')) return true;
         if ($user->hasRole('owner')) return $user->toko_id === $model->toko_id;
         if ($user->hasRole('kasir')) return $user->toko_id === $model->toko_id;
         return false;
