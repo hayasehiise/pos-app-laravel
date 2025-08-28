@@ -17,11 +17,15 @@ class LaporanPrint extends Component
 
     public function mount()
     {
-        $this->produk = Produk::all();
-        $this->penjualan = Penjualan::all();
-        $this->totalPenjualan = Penjualan::sum('total_harga');
-        $this->pengeluaran = Pengeluaran::all();
-        $this->totalPengeluaran = Pengeluaran::sum('total_pengeluaran');
+        $from = request()->get('start_date');
+        $to = request()->get('end_date');
+        $toko = auth()->user()->toko_id;
+
+        $this->produk = Produk::where('toko_id', $toko)->get();
+        $this->penjualan = Penjualan::where('toko_id', $toko)->whereBetween('tanggal_penjualan', [$from, $to])->get();
+        $this->totalPenjualan = $this->penjualan->sum('total_harga');
+        $this->pengeluaran = Pengeluaran::where('toko_id', $toko)->whereBetween('tanggal_pengeluaran', [$from, $to])->get();
+        $this->totalPengeluaran = $this->pengeluaran->sum('total_pengeluaran');
     }
     public function render()
     {

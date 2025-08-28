@@ -20,6 +20,7 @@ class CashFlowChart extends ChartWidget
     protected int | string | array $columnSpan = 'full';
 
     protected ?string $pollingInterval = null;
+    protected static bool $isLazy = false;
 
     protected function getData(): array
     {

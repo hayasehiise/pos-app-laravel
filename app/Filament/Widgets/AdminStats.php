@@ -12,10 +12,13 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 class AdminStats extends StatsOverviewWidget
 {
     protected ?string $pollingInterval = null;
+    protected static bool $isLazy = false;
+
     protected function getColumns(): int|array|null
     {
         return 2;
     }
+
     protected function getStats(): array
     {
         return [

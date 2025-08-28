@@ -11,6 +11,7 @@ use App\Filament\Widgets\CashFlowChart;
 use Filament\Pages\Dashboard as BaseDashboard;
 
 use App\Filament\Widgets\CashFlowStats;
+use App\Filament\Widgets\FilterLaporanPrint;
 use Filament\Actions\Action;
 use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 use Filament\Schemas\Components\Section;
@@ -41,16 +42,10 @@ class Dashboard extends BaseDashboard
                         Flex::make([
                             DatePicker::make('startDate')
                                 ->default(now()->startOfMonth())
-                                ->lazy(),
+                                ->reactive(),
                             DatePicker::make('endDate')
                                 ->default(now()->endOfMonth())
-                                ->lazy(),
-                            Action::make('print')
-                                ->icon('tabler-printer')
-                                ->label('Print Laporan')
-                                ->button()
-                                ->url(route('laporan.print'))
-                                ->openUrlInNewTab(),
+                                ->reactive(),
                         ])
                             ->verticallyAlignCenter()
                     ])
@@ -62,6 +57,7 @@ class Dashboard extends BaseDashboard
     public function getHeaderWidgets(): array
     {
         return [
+            FilterLaporanPrint::class,
             AccountWidget::class,
         ];
     }

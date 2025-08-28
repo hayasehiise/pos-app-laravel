@@ -12,6 +12,7 @@ class CashComparisonPengeluaranChart extends ChartWidget
     protected int|string|array $columnSpan = 1;
 
     protected ?string $pollingInterval = null;
+    protected static bool $isLazy = false;
 
     protected function getMonthlyData(string $model, string $column, string $sumColumn): array
     {
