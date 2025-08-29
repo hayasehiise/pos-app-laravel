@@ -56,6 +56,12 @@ class Dashboard extends BaseDashboard
 
     public function getHeaderWidgets(): array
     {
+        $user = auth()->user();
+        if ($user->hasRole('admin')) {
+            return [
+                AccountWidget::class,
+            ];
+        }
         return [
             FilterLaporanPrint::class,
             AccountWidget::class,
