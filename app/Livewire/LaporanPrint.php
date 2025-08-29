@@ -22,9 +22,9 @@ class LaporanPrint extends Component
         $toko = auth()->user()->toko_id;
 
         $this->produk = Produk::where('toko_id', $toko)->get();
-        $this->penjualan = Penjualan::where('toko_id', $toko)->whereBetween('tanggal_penjualan', [$from, $to])->get();
+        $this->penjualan = Penjualan::where('toko_id', $toko)->whereBetween('tanggal_penjualan', [$from, $to])->orderBy('tanggal_penjualan', 'asc')->get();
         $this->totalPenjualan = $this->penjualan->sum('total_harga');
-        $this->pengeluaran = Pengeluaran::where('toko_id', $toko)->whereBetween('tanggal_pengeluaran', [$from, $to])->get();
+        $this->pengeluaran = Pengeluaran::where('toko_id', $toko)->whereBetween('tanggal_pengeluaran', [$from, $to])->orderBy('tanggal_pengeluaran', 'asc')->get();
         $this->totalPengeluaran = $this->pengeluaran->sum('total_pengeluaran');
     }
     public function render()
