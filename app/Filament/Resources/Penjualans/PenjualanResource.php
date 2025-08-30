@@ -31,7 +31,7 @@ class PenjualanResource extends Resource
         return null;
     }
 
-    protected static ?string $recordTitleAttribute = 'Penjualan Management';
+    protected static ?string $recordTitleAttribute = '';
     protected static ?string $modelLabel = "Penjualan";
 
     protected static ?string $pluralModelLabel = "Manage Penjualan";

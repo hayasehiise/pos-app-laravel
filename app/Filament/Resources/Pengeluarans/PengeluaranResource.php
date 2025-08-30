@@ -33,7 +33,7 @@ class PengeluaranResource extends Resource
 
     protected static ?string $modelLabel = "Pengeluaran";
     protected static ?string $pluralModelLabel = "Manage Pengeluaran";
-    protected static ?string $recordTitleAttribute = 'Pengeluaran Management';
+    protected static ?string $recordTitleAttribute = '';
 
 
     public static function form(Schema $schema): Schema

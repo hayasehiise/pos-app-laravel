@@ -31,7 +31,7 @@ class TokoResource extends Resource
 
     protected static ?string $slug = 'toko';
 
-    protected static ?string $recordTitleAttribute = 'Toko Management';
+    protected static ?string $recordTitleAttribute = 'nama_toko';
 
     public static function form(Schema $schema): Schema
     {

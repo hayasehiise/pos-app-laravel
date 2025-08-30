@@ -32,7 +32,7 @@ class ProdukResource extends Resource
         return null;
     }
 
-    protected static ?string $recordTitleAttribute = 'Produk Management';
+    protected static ?string $recordTitleAttribute = 'nama_produk';
     protected static ?string $modelLabel = "Produk";
     protected static ?string $pluralModelLabel = "Manage Produk";
 
